@@ -8,8 +8,9 @@
 - This tiny script is for now only programed for windows and chrome
 
 ## How to use
+- Download this repository
 - Enter the times of your meetings in the file `Times.csv` in the section *From* and *To* with any texteditor or programs like libreoffice and excel.
 - If you haven't installed Python, you can do it from the store (i.e. Python 3.7) or manually from the internet.
-- Start the python script in cmd or double-click on it. If you open it in cmd, you can see the status of the script.
+- Start the python script in cmd with `python automation.py` or double-click on it. If you open it in cmd, you can see the status of the script.
 
 Please consider that it is not allowed to record people without there permission.
