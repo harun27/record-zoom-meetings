@@ -41,7 +41,14 @@ def open_meeting(zoom_url):
 	obs = subprocess.Popen("obs64.exe --startrecording --minimize-to-tray")
 	
 	print("Start the meeting ...")
-	chrome = subprocess.Popen("C:/Program Files/Google/Chrome/Application/chrome.exe --new-window " + zoom_url)
+	
+        try:
+            # try to open chrome as a 64 bit program
+            chrome = subprocess.Popen("C:/Program Files/Google/Chrome/Application/chrome.exe --new-window " + zoom_url)
+        except FileNotFoundError:
+            # open chrome as a 32 bit program
+            chrome = subprocess.Popen("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe --new-window " + zoom_url)
+
 	time.sleep(5)
 	subprocess.Popen.terminate(chrome)
 	
