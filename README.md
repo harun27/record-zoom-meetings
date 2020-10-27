@@ -5,5 +5,11 @@
 - You have to install chrome and accept that chrome can automatically open zoom-meetings. This can be done by opening a meeting and accepting the pop-up.
 - It is preferred that the recording format in obs is .mkv
 - In the zoom-settings you have to activate that you directly join to the audio of the meeting and preferably go into fullscreen mode.
+- This tiny script is for now only programed for windows and chrome
+
+## How to use
+- Enter the times of your meetings in the file `Times.csv` in the section *From* and *To* with any texteditor or programs like libreoffice and excel.
+- If you haven't installed Python, you can do it from the store (i.e. Python 3.7) or manually from the internet.
+- Start the python script in cmd or double-click on it. If you open it in cmd, you can see the status of the script.
 
 Please consider that it is not allowed to record people without there permission.
