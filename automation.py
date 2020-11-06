@@ -11,8 +11,8 @@ def read_table():
 		for row in reader:
 			
 			url = row['URL']
-			hour_from, min_from = row['From'].split(":")
-			hour_to, min_to = row['To'].split(":")
+			hour_from, min_from = row['From'].split(":")[:2]
+			hour_to, min_to = row['To'].split(":")[:2]
 			dic = {'From': (int(hour_from), int(min_from)), 'To': (int(hour_to), int(min_to)), 'URL': url}
 			print(dic)
 			data.append(dic)
@@ -50,7 +50,7 @@ def open_meeting(zoom_url):
 		chrome = subprocess.Popen("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe --new-window " + zoom_url)
 
 	time.sleep(5)
-	subprocess.Popen.terminate(chrome)
+	subprocess.Popen.kill(chrome)
 	
 	return obs
 
@@ -75,6 +75,7 @@ if __name__ == "__main__":
 			while(not check_time(data[next_meeting], 'To')):
 				time.sleep(60)
 			
+			os.system("TASKKILL /F /IM Zoom.exe")
 			subprocess.Popen.terminate(obs)
 			start = False
 			next_meeting += 1
