@@ -13,7 +13,7 @@ def read_table():
 			url = row['URL']
 			hour_from, min_from = row['From'].split(":")[:2]
 			hour_to, min_to = row['To'].split(":")[:2]
-			dic = {'From': (int(hour_from), int(min_from)), 'To': (int(hour_to), int(min_to)), 'URL': url}
+			dic = {'From': {'hour': int(hour_from), 'min': int(min_from)}, 'To': {'hour': int(hour_to), 'min': int(min_to)}, 'URL': url}
 			print(dic)
 			data.append(dic)
 	
@@ -25,13 +25,14 @@ def check_time(times, reference):
 	loctime = time.localtime()
 	now_min = loctime.tm_min
 	now_hour = loctime.tm_hour
-	now = (now_hour, now_min)
 	
-	print("Time now: " + str(now))
+	print("Time now: " + str(now_hour) + ":" + str(now_min))
 	
-	if all(s >= t for s, t in zip(now, times[reference])):
+	if now_hour > times[reference]['hour']: 
 		return True
-	else:
+	elif now_hour == times[reference]['hour'] and now_min >= times[reference]['min']: 
+		return True
+	else: 
 		return False
 		
 			
@@ -48,9 +49,6 @@ def open_meeting(zoom_url):
 	except FileNotFoundError:
 		# open chrome as a 32 bit program
 		chrome = subprocess.Popen("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe --new-window " + zoom_url)
-
-	time.sleep(5)
-	subprocess.Popen.kill(chrome)
 	
 	return obs
 
@@ -75,8 +73,10 @@ if __name__ == "__main__":
 			while(not check_time(data[next_meeting], 'To')):
 				time.sleep(60)
 			
-			os.system("TASKKILL /F /IM Zoom.exe")
 			subprocess.Popen.terminate(obs)
+			time.sleep(5)
+			
+			os.system("TASKKILL /F /IM Zoom.exe")
 			start = False
 			next_meeting += 1
 			
