@@ -15,4 +15,4 @@
 - This tiny script is for now only programed for windows and chrome.
 - It is not possible to record meetings that are in the same time.
 
-Please consider that it is not allowed to record people without there permission.
+Please consider that it is not allowed to record people and publish it without there permission.
